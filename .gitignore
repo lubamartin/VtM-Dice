@@ -2,3 +2,9 @@
 VtM-Dice/VtM-Dice/obj
 VtM-Dice/VtM-Dice/bin
 .vs
+VtM-Dice/obj/
+VtM-Dice/bin/Debug/netcoreapp2.1/logs/2019-07-02.txt
+DiceRoll/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+DiceRoll/obj/Debug/DiceRoll.csprojAssemblyReference.cache
+VtM-Dice/bin/
+DiceRoll/obj/

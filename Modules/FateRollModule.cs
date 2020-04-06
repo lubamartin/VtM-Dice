@@ -52,7 +52,7 @@ namespace VtMDiceMVC.Modules
 
       private Embed RollDice(int modifier, int damage)
       {
-         int numberOfDices = DefaultNumberOfDice - damage;
+         int numberOfDices = DefaultNumberOfDice;
          var dice = Dice6.Instance;
          List<int> rolls = new List<int>();
          for (int i = 0; i < numberOfDices; i++)
@@ -62,12 +62,12 @@ namespace VtMDiceMVC.Modules
 
          rolls.Sort();
 
-         return ComposeMessage(ConvertRollNumberToCharacters(rolls), CountSuccesses(rolls, modifier), modifier, damage);
+         return ComposeMessage(ConvertRollNumberToCharacters(rolls), CountSuccesses(rolls, modifier, damage), modifier, damage);
       }
 
-      private int CountSuccesses(IEnumerable<int> rolls, int modifier)
+      private int CountSuccesses(IEnumerable<int> rolls, int modifier, int damage)
       {
-         int numberOfSuccesses = modifier;
+         int numberOfSuccesses = modifier - damage;
 
          foreach (var roll in rolls)
          {
@@ -91,11 +91,11 @@ namespace VtMDiceMVC.Modules
             Color = new Color(114, 137, 218)
          };
 
-         var title = numberOfSuccesses < 0 
-            ? $"Roll is failure. Number of failures: {Math.Abs(numberOfSuccesses)}" 
-            : $"Number of successes : {numberOfSuccesses}";
+         //var title = numberOfSuccesses < 0 
+         //   ? $"Roll is failure. Number of failures: {Math.Abs(numberOfSuccesses)}" 
+         //   : $"Number of successes : {numberOfSuccesses}";
 
-         builder.Title = title;
+         builder.Title = $"Result of your roll : {numberOfSuccesses}";
          builder.Description = $"Rolls [{string.Join(", ", rolls)}]";
          if (modifier != DefaultModifier)
          {
